@@ -1,0 +1,6 @@
+*.pyc
+*.DS_Store
+*.sqlite
+.coverage
+__pycache__/
+migrations/
