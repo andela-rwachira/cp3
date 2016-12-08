@@ -8,7 +8,6 @@ class UserRegistrationAPIView(APITestCase):
     """
 
     def setUp(self):
-        """."""
         self.url = '/register'
 
     def test_register_new_user(self):
@@ -47,7 +46,7 @@ class UserLoginAPIView(APITestCase):
 
         response = self.client.post(self.url, self.user_data)
         self.assertEqual(response.status_code, 200)
-        self.assertTrue('token' in response.data)
+        self.assertTrue('auth_token' in response.data)
 
     def test_invalid_username_login(self):
         """Tests error raised when username is invalid."""

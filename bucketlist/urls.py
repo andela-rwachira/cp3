@@ -17,7 +17,10 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 urlpatterns = [
+    # Admin
     url(r'^admin/', admin.site.urls),
-    url(r'^api/auth/', include('bucket.urls')),
-    # url(r'^api/bucketlist/', include('bucket.urls')),
+    # Auth
+    url(r'^api/auth/', include('djoser.urls.authtoken')),
+    # Bucket API
+    url(r'^api/bucket/', include('bucket.urls')),
 ]
