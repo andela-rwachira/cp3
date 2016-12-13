@@ -16,11 +16,15 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from rest_framework_jwt.views import obtain_jwt_token
+
 urlpatterns = [
     # Admin
     url(r'^admin/', admin.site.urls),
     # Auth
     url(r'^api/auth/', include('djoser.urls.authtoken')),
+    url(r'^', include('djoser.urls.authtoken')),
+    # url(r'^login', obtain_jwt_token),
     # Bucket API
     url(r'^api/bucket/', include('bucket.urls')),
 ]
