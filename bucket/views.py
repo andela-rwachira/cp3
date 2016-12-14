@@ -12,10 +12,12 @@ class BucketlistAPIView(generics.ListCreateAPIView):
     Creates and lists all bucketlists.
     """
     serializer_class = BucketlistSerializer
-    # enables keyword/id search
+
+    # enables keyword/id search and pagination
     filter_backends = [SearchFilter]
     search_fields = ('name', 'id')
     pagination_class = BucketlistPageNumberPagination
+
     permission_classes = (IsAdminUser,)
 
     def get_queryset(self):
