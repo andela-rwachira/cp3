@@ -1,6 +1,5 @@
 from rest_framework import serializers
-from django.contrib.auth.models import User
-from .models import Bucketlist, Item
+from bucket.models import Bucketlist, Item
 
 
 class BucketlistSerializer(serializers.ModelSerializer):
@@ -11,7 +10,8 @@ class BucketlistSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Bucketlist
-        fields = ('id', 'name', 'date_created', 'date_modified', 'created_by', 'items')
+        fields = ('id', 'name', 'date_created',
+                  'date_modified', 'created_by', 'items')
 
 
 class ItemSerializer(serializers.ModelSerializer):
@@ -20,4 +20,5 @@ class ItemSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Item
-        fields = ('id', 'name', 'date_created', 'date_modified', 'created_by', 'bucket', 'done')
+        fields = ('id', 'name', 'date_created',
+                  'date_modified', 'created_by', 'bucket', 'done')
