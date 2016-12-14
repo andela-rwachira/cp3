@@ -22,9 +22,14 @@ urlpatterns = [
     # Admin
     url(r'^admin/', admin.site.urls),
     # Auth
-    url(r'^api/auth/', include('djoser.urls.authtoken')),
-    url(r'^', include('djoser.urls.authtoken')),
-    # url(r'^login', obtain_jwt_token),
+    # url(r'^api/auth/', include('djoser.urls.authtoken')),
+    # url(r'^', include('djoser.urls.authtoken')),
+    url(r'^api/auth/login', obtain_jwt_token),
     # Bucket API
     url(r'^api/bucket/', include('bucket.urls')),
 ]
+
+# Adds the login button to the browserify page.
+urlpatterns += [
+    url(r'^api-auth/', include('rest_framework.urls',
+                               namespace='rest_framework'))]

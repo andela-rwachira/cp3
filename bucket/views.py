@@ -18,7 +18,7 @@ class BucketlistAPIView(generics.ListCreateAPIView):
     search_fields = ('name', 'id')
     pagination_class = BucketlistPageNumberPagination
 
-    permission_classes = (IsAdminUser,)
+    # permission_classes = (IsAdminUser,)
 
     def get_queryset(self):
         """Returns bucketlists created by current user."""
