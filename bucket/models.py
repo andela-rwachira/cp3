@@ -39,4 +39,4 @@ class Item(models.Model):
         ordering = ('name',)
 
     def __str__(self):
-        return 'item: {}, done: {}'.format(self.name, self.done)
+        return 'id {} : {}'.format(self.id, self.name)
