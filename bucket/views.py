@@ -1,8 +1,10 @@
 from rest_framework import generics
+from rest_framework.filters import SearchFilter
 from rest_framework.permissions import IsAdminUser
 
 from bucket.models import Bucketlist, Item
 from bucket.serializers import BucketlistSerializer, ItemSerializer
+from bucket.utils import BucketlistPageNumberPagination
 
 
 class BucketlistAPIView(generics.ListCreateAPIView):
@@ -10,6 +12,10 @@ class BucketlistAPIView(generics.ListCreateAPIView):
     Creates and lists all bucketlists.
     """
     serializer_class = BucketlistSerializer
+    # enables keyword/id search
+    filter_backends = [SearchFilter]
+    search_fields = ['name', 'id']
+    pagination_class = BucketlistPageNumberPagination
     permission_classes = (IsAdminUser,)
 
     def get_queryset(self):
