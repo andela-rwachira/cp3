@@ -141,10 +141,3 @@ REST_FRAMEWORK = {
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     ),
 }
-
-
-# Change token-refresh to True every 15mins in JWT_AUTH defaults
-JWT_AUTH = {
-    'JWT_ALLOW_REFRESH': True,
-    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(seconds=900),
-}
