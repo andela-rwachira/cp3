@@ -14,7 +14,7 @@ class BucketlistAPIView(generics.ListCreateAPIView):
     serializer_class = BucketlistSerializer
     # enables keyword/id search
     filter_backends = [SearchFilter]
-    search_fields = ['name', 'id']
+    search_fields = ('name', 'id')
     pagination_class = BucketlistPageNumberPagination
     permission_classes = (IsAdminUser,)
 
