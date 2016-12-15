@@ -16,20 +16,20 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+import djoser.views
 from rest_framework_jwt.views import obtain_jwt_token
 
 urlpatterns = [
     # Admin
     url(r'^admin/', admin.site.urls),
-    # Auth
-    # url(r'^api/auth/', include('djoser.urls.authtoken')),
-    # url(r'^', include('djoser.urls.authtoken')),
-    url(r'^api/auth/login', obtain_jwt_token),
+    # User Auth
+    url(r'^api/auth/login', obtain_jwt_token),  # using JSON web token
+    url(r'^api/auth/register', djoser.views.RegistrationView.as_view()),
     # Bucket API
     url(r'^api/bucket/', include('bucket.urls')),
 ]
 
-# Adds the login button to the browserify page.
+# Add login button to the browsable API page
 urlpatterns += [
     url(r'^api-auth/', include('rest_framework.urls',
                                namespace='rest_framework'))]

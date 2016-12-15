@@ -9,7 +9,7 @@ class Bucketlist(models.Model):
     Models the bucketlist class.
     """
     name = models.CharField(max_length=100, blank=False)
-    date_created = models.DateTimeField(default=timezone.now(), editable=False)
+    date_created = models.DateTimeField(auto_now_add=True, editable=False)
     date_modified = models.DateTimeField(auto_now=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE,
                                    related_name='bucketlists', editable=False)
@@ -27,7 +27,7 @@ class Item(models.Model):
     Models the bucketlist item class.
     """
     name = models.CharField(max_length=100, blank=False)
-    date_created = models.DateTimeField(default=timezone.now(), editable=False)
+    date_created = models.DateTimeField(auto_now_add=True, editable=False)
     date_modified = models.DateTimeField(auto_now=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE,
                                    related_name='bucketlist_item', editable=False)

@@ -6,7 +6,7 @@ class BucketlistSerializer(serializers.ModelSerializer):
     """
     Seralizes the Bucketlist model.
     """
-    items = serializers.StringRelatedField(many=True)
+    items = serializers.StringRelatedField(many=True, read_only=True)
     created_by = serializers.SerializerMethodField()
 
     class Meta:

@@ -1,6 +1,5 @@
 from rest_framework import generics
 from rest_framework.filters import SearchFilter
-from rest_framework.permissions import IsAdminUser
 
 from bucket.models import Bucketlist, Item
 from bucket.serializers import BucketlistSerializer, ItemSerializer
@@ -17,8 +16,6 @@ class BucketlistAPIView(generics.ListCreateAPIView):
     filter_backends = [SearchFilter]
     search_fields = ('name', 'id')
     pagination_class = BucketlistPageNumberPagination
-
-    # permission_classes = (IsAdminUser,)
 
     def get_queryset(self):
         """Returns bucketlists created by current user."""
