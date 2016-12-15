@@ -40,11 +40,10 @@ class ItemSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'date_created',
                   'date_modified', 'created_by', 'bucket', 'done')
 
-    def validate(self, data):
+    def validate_name(self, data):
         """Checks for duplicates."""
         user = self.context['request'].user
-        name = data['name']
-        queryset = Item.objects.filter(name=name, created_by=user)
+        queryset = Item.objects.filter(name=data, created_by=user)
         if queryset.exists():
             raise serializers.ValidationError('This item already exists.')
         return data
