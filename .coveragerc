@@ -1,0 +1,7 @@
+[report]
+
+include =
+    *bucket/tests/*
+
+omit =
+    *bucket/tests/__init__.py*

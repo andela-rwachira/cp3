@@ -8,7 +8,7 @@ class UserRegistrationAPIView(APITestCase):
     """
 
     def setUp(self):
-        self.url = '/register'
+        self.url = '/api/auth/register'
 
     def test_register_new_user(self):
         """Tests a new user can be succesfully registered."""
@@ -36,7 +36,7 @@ class UserLoginAPIView(APITestCase):
 
     def setUp(self):
         """Create a dummy user to test login against."""
-        self.url = '/login'
+        self.url = '/api/auth/login'
         User.objects.create_user(username='testjane', password='testpass')
 
     def test_login(self):
@@ -46,7 +46,7 @@ class UserLoginAPIView(APITestCase):
 
         response = self.client.post(self.url, self.user_data)
         self.assertEqual(response.status_code, 200)
-        self.assertTrue('auth_token' in response.data)
+        self.assertTrue('token' in response.data)
 
     def test_invalid_username_login(self):
         """Tests error raised when username is invalid."""
