@@ -18,6 +18,9 @@ from django.contrib import admin
 
 import djoser.views
 from rest_framework_jwt.views import obtain_jwt_token
+from rest_framework_swagger.views import get_swagger_view
+
+schema_view = get_swagger_view(title='Bucket API')
 
 urlpatterns = [
     # Admin
@@ -29,7 +32,10 @@ urlpatterns = [
     url(r'^api/bucket/', include('bucket.urls')),
 ]
 
-# Add login button to the browsable API page
 urlpatterns += [
+    # Login button on the browsable API
     url(r'^api-auth/', include('rest_framework.urls',
-                               namespace='rest_framework'))]
+                               namespace='rest_framework')),
+    # Swagger documentation
+    url(r'^$', schema_view),
+]
