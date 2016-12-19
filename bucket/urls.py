@@ -1,5 +1,4 @@
 from django.conf.urls import url
-from django.contrib import admin
 
 from bucket.views import (
     BucketlistAPIView,
@@ -14,4 +13,3 @@ urlpatterns = [
     url(r'^(?P<bucket>[\d-]+)/items/$', ItemAPIView.as_view(), name='item'),
     url(r'^(?P<bucket>[\d-]+)/items/(?P<pk>[\d-]+)/$', ItemDetailAPIView.as_view(), name='item_detail')
 ]
-
