@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework_swagger',
     'djoser',
     'bucket',
 ]
@@ -132,6 +133,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Add JWT authentication
 # Session auth powers login/logout on browsable API page
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
@@ -144,6 +146,19 @@ REST_FRAMEWORK = {
 }
 
 # Set token expiration period to 50mins
+
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=3000),
+}
+
+# Swagger API documentation - figure out token auth
+
+SWAGGER_SETTINGS = {
+    "securityDefinitions": {
+    "bearer": {
+        "type": "apiKey",
+        "name": "Authorization",
+        "in": "header"
+    }
+    }
 }
