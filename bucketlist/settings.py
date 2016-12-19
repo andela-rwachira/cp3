@@ -150,15 +150,3 @@ REST_FRAMEWORK = {
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=3000),
 }
-
-# Swagger API documentation - figure out token auth
-
-SWAGGER_SETTINGS = {
-    "securityDefinitions": {
-    "bearer": {
-        "type": "apiKey",
-        "name": "Authorization",
-        "in": "header"
-    }
-    }
-}
