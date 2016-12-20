@@ -1,7 +1,9 @@
 [report]
 
 include =
-    *bucket/tests/*
+    *bucket/*
 
 omit =
-    *bucket/tests/__init__.py*
+    *bucket/tests/*
+    *bucket/migrations/*
+    *bucket/apps.py

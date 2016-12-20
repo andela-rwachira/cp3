@@ -30,8 +30,8 @@ class BaseTestCase(APITestCase):
                                         created_by=self.user,
                                         bucket=self.bucketlist)
         self.item2 = Item.objects.create(name='testitem2',
-                                        created_by=self.user,
-                                        bucket=self.bucketlist)
+                                         created_by=self.user,
+                                         bucket=self.bucketlist)
         self.api_authentication()
 
     def api_authentication(self):
