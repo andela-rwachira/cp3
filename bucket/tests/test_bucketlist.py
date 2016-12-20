@@ -7,6 +7,14 @@ class TestBucketlistAPIView(BaseTestCase):
     Test bucketlist interactions.
     """
 
+    def test_unauthorized_access(self):
+        """Tests error raised when user is not authorised."""
+        self.client.credentials()
+        response = self.client.post('/api/bucket/', {'name': 'bucket'},
+                                    format='json')
+        self.assertEqual(response.status_code, 403)
+        self.assertEqual(response.data['detail'], "Authentication credentials were not provided.")
+
     def test_create_new_bucketlist(self):
         """Tests a new bucketlist can be added."""
         response = self.client.post('/api/bucket/', {'name': 'bucketlist'},
@@ -22,7 +30,7 @@ class TestBucketlistAPIView(BaseTestCase):
         response = self.client.post('/api/bucket/', {'name': ''},
                                     format='json')
         self.assertEqual(response.status_code, 400)
-        self.assertEqual(response.data['name'][0], 'This field may not be blank')
+        self.assertEqual(response.data['name'][0], 'This field may not be blank.')
 
     def test_duplicates_prevented(self):
         """
@@ -33,7 +41,7 @@ class TestBucketlistAPIView(BaseTestCase):
         response = self.client.post('/api/bucket/', {'name': 'testbucketlist'},
                                     format='json')
         self.assertEqual(response.status_code, 400)
-        self.assertEqual(response.data['non_field_errors'][0], 'This bucketlist already exists')   
+        self.assertEqual(response.data['non_field_errors'][0], 'This bucketlist already exists.')   
 
     def test_return_all_bucketlists(self):
         """Tests retrieval of all bucketlists."""
@@ -47,19 +55,19 @@ class TestBucketlistAPIView(BaseTestCase):
         Two test bucketlists were added in the setUp to
         test that the id parameter works correctly.
         """
-        response = self.client.get('/api/bucket/2/', format='json')
+        response = self.client.get('/api/bucket/{}/'.format(self.bucketlist2.id), format='json')
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.data['name'], 'testbucketlist')
+        self.assertEqual(response.data['name'], 'testbucketlist2')
 
     def test_invalid_bucketlist_get_request(self):
         """Tests error raised for an invalid get request."""
         response = self.client.get('/api/bucket/3/', format='json')
         self.assertEqual(response.status_code, 404)
-        self.assertEqual(response.data['detail'], 'Not found')
+        self.assertEqual(response.data['detail'], 'Not found.')
 
     def test_update_bucketlist(self):
         """Tests a bucketlist can be updated."""
-        response = self.client.put('/api/bucket/1/', {'name': 'updated'},
+        response = self.client.put('/api/bucket/{}/'.format(self.bucketlist.id), {'name': 'updated'},
                                    format='json')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data['name'], 'updated')
@@ -69,7 +77,7 @@ class TestBucketlistAPIView(BaseTestCase):
         response = self.client.put('/api/bucket/3/', {'name': 'updated'},
                                    format='json')
         self.assertEqual(response.status_code, 404)
-        self.assertEqual(response.data['detail'], 'Not found')
+        self.assertEqual(response.data['detail'], 'Not found.')
 
     def test_duplicates_prevented_during_updates(self):
         """
@@ -78,38 +86,38 @@ class TestBucketlistAPIView(BaseTestCase):
 
         A bucket named 'testbucketlist' was already created in setUp.
         """
-        response = self.client.put('/api/bucket/2/',
+        response = self.client.put('/api/bucket/{}/'.format(self.bucketlist.id),
                                    {'name': 'testbucketlist'},
                                    format='json')
         self.assertEqual(response.status_code, 400)
-        self.assertEqual(response.data['non_field_errors'][0], 'This bucketlist already exists')
+        self.assertEqual(response.data['non_field_errors'][0], 'This bucketlist already exists.')
 
     def test_delete_bucketlist(self):
         """Tests bucketlist deletion."""
-        response = self.client.delete('/api/bucket/1/', format='json')
+        response = self.client.delete('/api/bucket/{}/'.format(self.bucketlist.id), format='json')
         self.assertEqual(response.status_code, 204)
-        self.assertEqual(Bucketlist.objects.filter(name='testbucketlist'), None)
+        self.assertEqual(Bucketlist.objects.filter(name='testbucketlist').count(), 0)
 
     def test_invalid_delete(self):
         """Tests error raised for an invalid delete request."""
         response = self.client.delete('/api/bucket/3/', format='json')
         self.assertEqual(response.status_code, 404)
-        self.assertEqual(response.data['detail'], 'Not found')
+        self.assertEqual(response.data['detail'], 'Not found.')
 
     def test_results_limit(self):
         """Tests specified number of results retrieved from GET request."""
-        response = self.client.get('/bucketlists/?limit=1', format='json')
+        response = self.client.get('/api/bucket/?limit=1', format='json')
         self.assertEqual(response.status_code, 200)
         self.assertTrue(response.data['next'])
 
     def test_pagination(self):
         """Tests specified number of pages returned from GET request."""
-        response = self.client.get('/bucketlists/?page=1', format='json')
+        response = self.client.get('/api/bucket/?page=1', format='json')
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(response.data['next'], 'null') # or null
+        self.assertEqual(response.data['next'], None)
 
     def test_search_by_bucketlist_name(self):
         """Tests bucketlist can be retrieved from search."""
-        response = self.client.get('/bucketlists/?search=Testbucketlist')
+        response = self.client.get('/api/bucket/?search=testbucketlist')
         self.assertEqual(response.status_code, 200)
-        self.assertTrue(response.data['name'], 'testbucketlist')
+        self.assertTrue(response.data['results'][0]['name'], 'testbucketlist')

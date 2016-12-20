@@ -1,5 +1,6 @@
 from rest_framework import generics
 from rest_framework.filters import SearchFilter
+from django.shortcuts import get_object_or_404
 
 from bucket.models import Bucketlist, Item
 from bucket.serializers import BucketlistSerializer, ItemSerializer
@@ -49,7 +50,7 @@ class ItemAPIView(generics.CreateAPIView):
         """Saves item with current user and bucket."""
         queryset = Bucketlist.objects.filter(created_by=self.request.user)
         bucket_id = self.kwargs.get('bucket')
-        bucketlist = queryset.get(id=bucket_id)
+        bucketlist = get_object_or_404(queryset, id=bucket_id)
         serializer.save(created_by=self.request.user,
                         bucket=bucketlist)
 
