@@ -17,7 +17,7 @@ class ItemSerializer(serializers.ModelSerializer):
     def validate_name(self, data):
         """Checks for duplicates."""
         user = self.context['request'].user
-        queryset = Item.objects.filter(name=data, created_by=user)
+        queryset = Item.objects.filter(name__iexact=data, created_by=user)
         if queryset.exists():
             raise serializers.ValidationError('This item already exists.')
         return data
@@ -48,7 +48,7 @@ class BucketlistSerializer(serializers.ModelSerializer):
         """Checks for duplicates."""
         user = self.context['request'].user
         name = data['name']
-        queryset = Bucketlist.objects.filter(name=name, created_by=user)
+        queryset = Bucketlist.objects.filter(name__iexact=name, created_by=user)
         if queryset.exists():
             raise serializers.ValidationError('This bucketlist already exists.')
         return data
