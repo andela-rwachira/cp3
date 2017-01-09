@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/andela-rwachira/cp3.svg?branch=develop)](https://travis-ci.org/andela-rwachira/cp3)
-[![Coverage Status](https://coveralls.io/repos/github/andela-rwachira/cp3/badge.svg)](https://coveralls.io/github/andela-rwachira/cp3)
+[![Coverage Status](https://coveralls.io/repos/github/andela-rwachira/cp3/badge.svg?branch=develop)](https://coveralls.io/github/andela-rwachira/cp3?branch=develop)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/andela-rwachira/cp3/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/andela-rwachira/cp3/?branch=develop)
 ![Python Version](https://img.shields.io/badge/python-3.5-brightgreen.svg)
 
