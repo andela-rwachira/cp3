@@ -1,5 +1,5 @@
 from bucket.models import Bucketlist
-from tests.test_base import BaseTestCase
+from .test_base import BaseTestCase
 
 
 class TestBucketlistAPIView(BaseTestCase):
