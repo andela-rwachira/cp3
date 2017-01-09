@@ -1,5 +1,5 @@
 from bucket.models import Item
-from test_base import BaseTestCase
+from tests.test_base import BaseTestCase
 
 
 class TestItemAPIView(BaseTestCase):
