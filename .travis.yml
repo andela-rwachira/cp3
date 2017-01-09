@@ -6,6 +6,8 @@ install:
 - pip install -r requirements.txt
 - pip install coveralls
 # command to run tests
+services:
+  - postgresql
 script:
   coverage run manage.py test
 after_success:
