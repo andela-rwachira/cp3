@@ -147,10 +147,10 @@ REST_FRAMEWORK = {
     ),
 }
 
-# Set token expiration period to 50mins
+# Set token expiration period to 12hours
 
 JWT_AUTH = {
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=3000),
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=43200),
 }
 
 # Defines allowed localhost routes
