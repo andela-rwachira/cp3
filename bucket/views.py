@@ -20,7 +20,7 @@ class BucketlistAPIView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         """Returns bucketlists created by current user."""
-        queryset = Bucketlist.objects.filter(created_by=self.request.user)
+        queryset = Bucketlist.objects.order_by('-date_modified').filter(created_by=self.request.user)
         return queryset
 
     def perform_create(self, serializer):
