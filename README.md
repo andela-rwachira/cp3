@@ -28,7 +28,7 @@ Once you have activated your virtualenv, clone the repo from GitHub:
 ```
 $ cd cp3
 
-$ git clone https://github.com/andela-rwachira/cp3
+$ git clone https://github.com/andela-rwachira/cp3.git
 ```
 
 Install the requirements:
@@ -65,7 +65,7 @@ $ python manage.py runserver
 
 ## Usage
 
-You can watch a 1.30 minute video demo on [Youtube](https://youtu.be/RQAW0YGOEts)
+You can watch a 1 minute video demo on [Youtube](https://youtu.be/RQAW0YGOEts)
 
 ## Testing
 
