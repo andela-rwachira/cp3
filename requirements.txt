@@ -8,6 +8,7 @@ django-rest-swagger==2.1.0
 djangorestframework==3.5.3
 djangorestframework-jwt==1.9.0
 djoser==0.5.1
+gunicorn==19.6.0
 ipdb==0.10.1
 ipython==5.1.0
 ipython-genutils==0.1.0
