@@ -27,7 +27,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -153,10 +153,10 @@ JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=43200),
 }
 
-# Defines allowed localhost routes
+# Defines allowed hostnames
 
 CORS_ORIGIN_WHITELIST = (
     'localhost:8000',
     'localhost:4200',
-    'https://cp3-app.herokuapp.com/'
+    'cp3-app.herokuapp.com'
 )
