@@ -170,6 +170,6 @@ JWT_AUTH = {
 CORS_ORIGIN_WHITELIST = (
     'localhost:8000',
     'localhost:4200',
-    'cp3-app.herokuapp.com',
+    'cp3-api.herokuapp.com',
     'bckt.herokuapp.com'
 )
