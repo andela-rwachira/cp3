@@ -171,5 +171,6 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:8000',
     'localhost:4200',
     'cp3-api.herokuapp.com',
-    'bckt.herokuapp.com'
+    'bckt.herokuapp.com',
+    'bucket-7d045.firebaseapp.com'
 )
